@@ -35,6 +35,15 @@ use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseCo
 
 also don't forget to add **HasSocialAccount** trait to User model
 
+```php
+
+use Atin\LaravelSocialAuth\Traits\HasSocialAccount;
+
+class User extends Authenticatable
+{
+    use HasSocialAccount, …
+```
+
 # Migrations
 ```php
 php artisan vendor:publish --tag="laravel-social-auth-migrations"

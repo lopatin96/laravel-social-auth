@@ -1,5 +1,5 @@
 # Usage
-Add these lines to *resources/views/auth/login.blade.php*
+Add these lines to *resources/views/auth/login.blade.php*:
 
 ```html
 <div class="flex flex-col space-y-4">
@@ -12,7 +12,7 @@ Add these lines to *resources/views/auth/login.blade.php*
 </p>
 ```
 
-and these to *resources/views/auth/register.blade.php*
+and these to *resources/views/auth/register.blade.php*:
 
 ```html
 <div class="flex flex-col space-y-4">
@@ -25,13 +25,27 @@ and these to *resources/views/auth/register.blade.php*
 </p>
 ```
 
-also add **HasSocialAccount** trait to User model. 
+and these lines to *app/Providers/FortyServiceProvider.php as uses to manage redirections:
+
+```php
+use Atin\LaravelSocialAccount\Http\Responses\LoginResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
+```
+
+also don't forget to add **HasSocialAccount** trait to User model
 
 # Migrations
-    php artisan vendor:publish --tag="laravel-social-account-migrations"
+```php
+php artisan vendor:publish --tag="laravel-social-account-migrations"
+```
 
 # Localization
-    php artisan vendor:publish --tag="laravel-social-account-lang"
+```php
+php artisan vendor:publish --tag="laravel-social-account-lang"
+```
 
 # Views
-    php artisan vendor:publish --tag="laravel-social-account-views"
+```php
+php artisan vendor:publish --tag="laravel-social-account-views"
+```

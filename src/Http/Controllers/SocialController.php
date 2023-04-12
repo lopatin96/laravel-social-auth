@@ -4,6 +4,7 @@ namespace Atin\LaravelSocialAccount\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Atin\LaravelSocialAccount\Helpers\AuthRedirectionHelper;
 use Carbon\Carbon;
 use Event;
 use Illuminate\Auth\Events\Registered;
@@ -50,17 +51,6 @@ class SocialController extends Controller
             Auth::login($newUser);
         }
 
-        return redirect(self::getRouteToRedirect());
-    }
-
-    public static function getRouteToRedirect(): string
-    {
-        return Auth::user()->isAdmin()
-            ? '/nova/dashboards/main'
-            : (
-            ! Auth::user()->subscribed() && ! Auth::user()->onTrial()
-                ? '/billing'
-                : '/dashboard'
-            );
+        return redirect(AuthRedirectionHelper::getRoute());
     }
 }

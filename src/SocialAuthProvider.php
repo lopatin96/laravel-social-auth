@@ -23,7 +23,7 @@ class SocialAuthProvider extends ServiceProvider
         ], 'laravel-social-auth-migrations');
 
         $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/views')
+            __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-social-auth')
         ], 'laravel-social-auth-views');
 
         $this->publishes([

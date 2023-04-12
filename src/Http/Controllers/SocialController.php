@@ -1,10 +1,10 @@
 <?php
 
-namespace Atin\LaravelSocialAccount\Http\Controllers;
+namespace Atin\LaravelSocialAuth\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Atin\LaravelSocialAccount\Helpers\AuthRedirectionHelper;
+use Atin\LaravelSocialAuth\Helpers\AuthRedirectionHelper;
 use Carbon\Carbon;
 use Event;
 use Illuminate\Auth\Events\Registered;
@@ -28,13 +28,13 @@ class SocialController extends Controller
         }
 
         if (
-            $socialAccount = \Atin\LaravelSocialAccount\Models\SocialAccount::where('social_provider_user_id', $user->getId())
+            $socialAccount = \Atin\LaravelSocialAuth\Models\SocialAccount::where('social_provider_user_id', $user->getId())
                 ->where('social_provider', $social)
                 ->first()
         ) {
             Auth::login($socialAccount->user);
         } else {
-            $newSocialAccount = new \Atin\LaravelSocialAccount\Models\SocialAccount;
+            $newSocialAccount = new \Atin\LaravelSocialAuth\Models\SocialAccount;
             $newSocialAccount->social_provider = $social;
             $newSocialAccount->social_provider_user_id = $user->getId();
 

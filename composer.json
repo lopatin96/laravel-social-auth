@@ -1,15 +1,15 @@
 {
-  "name": "lopatin96/laravel-social-account",
+  "name": "lopatin96/laravel-social-auth",
   "description": "Laravel social account",
   "autoload": {
     "psr-4": {
-      "Atin\\LaravelSocialAccount\\": "src"
+      "Atin\\LaravelSocialAuth\\": "src"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "Atin\\LaravelSocialAccount\\SocialAccountProvider"
+        "SocialAuthProvider"
       ]
     }
   },

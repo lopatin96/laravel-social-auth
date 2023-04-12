@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-namespace Atin\LaravelSocialAccount\Helpers;
+namespace Atin\LaravelSocialuth\Helpers;
 
 use Illuminate\Support\Facades\Auth;
 

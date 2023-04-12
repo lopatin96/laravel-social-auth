@@ -1,8 +1,8 @@
 <?php
 
-namespace Atin\LaravelSocialAccount\Traits;
+namespace Atin\LaravelSocialAuth\Traits;
 
-use Atin\LaravelSocialAccount\Models\SocialAccount;
+use Atin\LaravelSocialAuth\Models\SocialAccount;
 
 trait HasSocialAccount
 {

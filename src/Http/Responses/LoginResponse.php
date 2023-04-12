@@ -1,8 +1,8 @@
 <?php
 
-namespace Atin\LaravelSocialAccount\Http\Responses;
+namespace Atin\LaravelSocialAuth\Http\Responses;
 
-use Atin\LaravelSocialAccount\Helpers\AuthRedirectionHelper;
+use Atin\LaravelSocialAuth\Helpers\AuthRedirectionHelper;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Illuminate\Routing\Redirector;

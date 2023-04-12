@@ -1,4 +1,5 @@
-# Usage
+# Install
+### Views
 Add these lines to *resources/views/auth/login.blade.php*:
 
 ```html
@@ -25,7 +26,8 @@ and these to *resources/views/auth/register.blade.php*:
 </p>
 ```
 
-and these lines to *app/Providers/FortyServiceProvider.php* as uses to manage redirections:
+### FortyServiceProvider
+Add these lines to *app/Providers/FortyServiceProvider.php* as uses to manage redirections:
 
 ```php
 use Atin\LaravelSocialAuth\Http\Responses\LoginResponse;
@@ -33,7 +35,8 @@ use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 ```
 
-also don't forget to add **HasSocialAccount** trait to User model
+### Trait
+Add **HasSocialAccount** trait to User model
 
 ```php
 
@@ -44,17 +47,36 @@ class User extends Authenticatable
     use HasSocialAccount, …
 ```
 
-# Migrations
+### Configuration
+Add these keys to *config/services.php* to manage google and facebook authentications:
+
+```json
+'google' => [
+        'api_key' => env('GOOGLE_API_KEY'),
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT'),
+    ],
+
+'facebook' => [
+    'client_id' => env('FACEBOOK_CLIENT_ID'),
+    'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+    'redirect' => env('FACEBOOK_REDIRECT'),
+],
+```
+
+# Publishing
+### Migrations
 ```php
 php artisan vendor:publish --tag="laravel-social-auth-migrations"
 ```
 
-# Localization
+### Localization
 ```php
 php artisan vendor:publish --tag="laravel-social-auth-lang"
 ```
 
-# Views
+### Views
 ```php
 php artisan vendor:publish --tag="laravel-social-auth-views"
 ```

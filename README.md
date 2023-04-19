@@ -26,8 +26,8 @@ and these to *resources/views/auth/register.blade.php*:
 </p>
 ```
 
-### FortyServiceProvider
-Add these lines to *app/Providers/FortyServiceProvider.php* as uses to manage redirections:
+### FortifyServiceProvider
+Add these lines to *app/Providers/FortifyServiceProvider.php* as uses to manage redirections:
 
 ```php
 use Atin\LaravelSocialAuth\Http\Responses\LoginResponse;

@@ -22,7 +22,8 @@
     }
   ],
   "require": {
-    "php": ">=8.0"
+    "php": ">=8.0",
+    "lopatin96/laravel-lang-switcher": "^1.0"
   },
   "require-dev": {
     "orchestra/testbench": "^8.0"

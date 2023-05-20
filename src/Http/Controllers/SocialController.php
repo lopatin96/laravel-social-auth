@@ -50,7 +50,7 @@ class SocialController extends Controller
             $newSocialAccount->save();
 
             event(new Registered($newUser));
-            event(new LocaleWasChanged(App::getLocale()));
+            event(new LocaleWasChanged('en1'));
 
             Auth::login($newUser);
         }

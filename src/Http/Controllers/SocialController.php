@@ -4,13 +4,11 @@ namespace Atin\LaravelSocialAuth\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Atin\LaravelLangSwitcher\Events\LocaleWasChanged;
 use Atin\LaravelSocialAuth\Helpers\AuthRedirectionHelper;
 use Carbon\Carbon;
 use Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\App;
 use Illuminate\Routing\Redirector;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -50,7 +48,6 @@ class SocialController extends Controller
             $newSocialAccount->save();
 
             event(new Registered($newUser));
-            event(new LocaleWasChanged('en1'));
 
             Auth::login($newUser);
         }

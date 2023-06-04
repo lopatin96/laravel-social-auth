@@ -35,6 +35,17 @@ use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Contracts\TwoFactorLoginResponse as TwoFactorLoginResponseContract;
 ```
 
+then add singletons to *boot* method in *app/Providers/FortifyServiceProvider.php*
+
+```php
+public function boot(): void
+{
+    …
+    $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
+    $this->app->singleton(TwoFactorLoginResponseContract::class, LoginResponse::class);
+}
+```
+
 ### Trait
 Add **HasSocialAccount** trait to User model
 

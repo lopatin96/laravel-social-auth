@@ -12,10 +12,6 @@ class AuthRedirectionHelper
     {
         return Auth::user()->isAdmin()
             ? '/nova/dashboards/main'
-            : (
-            ! Auth::user()->subscribed() && ! Auth::user()->onTrial()
-                ? '/billing'
-                : '/dashboard'
-            );
+            : (! Auth::user()->subscribed() && ! Auth::user()->onTrial() ? '/billing' : '/dashboard');
     }
 }

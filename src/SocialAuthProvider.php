@@ -21,6 +21,8 @@ class SocialAuthProvider extends ServiceProvider
 
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'laravel-social-auth');
 
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-social-auth');
+
         $this->publishes([
             __DIR__.'/../database/migrations' => database_path('/migrations')
         ], 'laravel-social-auth-migrations');
@@ -32,5 +34,9 @@ class SocialAuthProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../lang' => $this->app->langPath('vendor/laravel-social-auth'),
         ], 'laravel-social-auth-lang');
+
+        $this->publishes([
+            __DIR__.'/../config/config.php' => config_path('laravel-social-auth.php')
+        ], 'laravel-social-auth-config');
     }
 }

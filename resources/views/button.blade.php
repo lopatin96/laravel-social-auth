@@ -1,5 +1,5 @@
 <a href="/auth/{{ $provider }}">
-    <div class="flex items-center justify-between hover:bg-gray-100 transition rounded border px-4 py-3">
+    <div class="flex items-center justify-between hover:bg-gray-100 transition rounded-lg border px-4 py-2.5">
         <div class="flex items-center space-x-4">
              <span>
                  @include("laravel-social-auth::logos.$provider")

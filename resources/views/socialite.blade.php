@@ -8,7 +8,9 @@
         @endforeach
     </div>
 
-    <p class="my-7 text-gray-400 text-center">
-        {{ __('laravel-social-auth::social-auth.or') }}
-    </p>
+    <div class="relative flex py-8 items-center">
+        <div class="flex-grow border-t border-gray-100"></div>
+        <span class="flex-shrink mx-4 text-gray-400">{{ __('laravel-social-auth::social-auth.or') }}</span>
+        <div class="flex-grow border-t border-gray-100"></div>
+    </div>
 @endif

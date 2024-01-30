@@ -42,6 +42,9 @@ class SocialController extends Controller
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
                 'email_verified_at' => $user->getEmail() ? Carbon::now() : null,
+                'country' => request()->cookie('country'),
+                'variant' => request()->cookie('variant'),
+                'keyword' => request()->cookie('keyword'),
             ]);
 
             $newSocialAccount->user()->associate($newUser);

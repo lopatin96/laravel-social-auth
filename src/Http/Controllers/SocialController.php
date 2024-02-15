@@ -5,7 +5,6 @@ namespace Atin\LaravelSocialAuth\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Atin\LaravelSocialAuth\Helpers\AuthRedirectionHelper;
-use Carbon\Carbon;
 use Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +40,8 @@ class SocialController extends Controller
             $newUser = User::create([
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
-                'email_verified_at' => $user->getEmail() ? Carbon::now() : null,
+                'email_verified_at' => $user->getEmail() ? now() : null,
+                'locale' => request()->cookie('locale'),
                 'country' => request()->cookie('country'),
                 'variant' => request()->cookie('variant'),
                 'keyword' => request()->cookie('keyword'),

@@ -37,7 +37,7 @@ class SocialController extends Controller
             $newSocialAccount->social_provider = $social;
             $newSocialAccount->social_provider_user_id = $user->getId();
 
-            $newUser = User::create([
+            $newUser = User::forceCreate([
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
                 'email_verified_at' => $user->getEmail() ? now() : null,

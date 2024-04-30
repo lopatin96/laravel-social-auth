@@ -7,7 +7,6 @@ use App\Models\User;
 use Atin\LaravelSocialAuth\Helpers\AuthRedirectionHelper;
 use Event;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Redirector;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -26,12 +25,14 @@ class SocialController extends Controller
             return redirect('/login');
         }
 
-        if (
-            $socialAccount = \Atin\LaravelSocialAuth\Models\SocialAccount::where('social_provider_user_id', $user->getId())
-                ->where('social_provider', $social)
-                ->first()
-        ) {
-            Auth::login($socialAccount->user);
+        $socialAccount = \Atin\LaravelSocialAuth\Models\SocialAccount::where('social_provider_user_id', $user->getId())
+            ->where('social_provider', $social)
+            ->first();
+
+        if ($socialAccount && $socialAccount->user) {
+            auth()->login($socialAccount->user);
+        } else if ($socialAccount && ! $socialAccount->user) {
+            abort(404);
         } else {
             $newSocialAccount = new \Atin\LaravelSocialAuth\Models\SocialAccount;
             $newSocialAccount->social_provider = $social;
@@ -52,7 +53,7 @@ class SocialController extends Controller
 
             event(new Registered($newUser));
 
-            Auth::login($newUser);
+            auth()->login($newUser);
         }
 
         return redirect(AuthRedirectionHelper::getRoute());

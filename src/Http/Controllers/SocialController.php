@@ -3,8 +3,10 @@
 namespace Atin\LaravelSocialAuth\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Team;
 use App\Models\User;
 use Atin\LaravelSocialAuth\Helpers\AuthRedirectionHelper;
+use Atin\LaravelSocialAuth\Models\SocialAccount;
 use Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Routing\Redirector;
@@ -25,7 +27,7 @@ class SocialController extends Controller
             return redirect('/login');
         }
 
-        $socialAccount = \Atin\LaravelSocialAuth\Models\SocialAccount::where('social_provider_user_id', $user->getId())
+        $socialAccount = SocialAccount::where('social_provider_user_id', $user->getId())
             ->where('social_provider', $social)
             ->first();
 
@@ -34,7 +36,7 @@ class SocialController extends Controller
         } else if ($socialAccount && ! $socialAccount->user) {
             abort(404);
         } else {
-            $newSocialAccount = new \Atin\LaravelSocialAuth\Models\SocialAccount;
+            $newSocialAccount = new SocialAccount;
             $newSocialAccount->social_provider = $social;
             $newSocialAccount->social_provider_user_id = $user->getId();
 
@@ -51,11 +53,22 @@ class SocialController extends Controller
             $newSocialAccount->user()->associate($newUser);
             $newSocialAccount->save();
 
+            $this->createTeam($newUser);
+
             event(new Registered($newUser));
 
             auth()->login($newUser);
         }
 
         return redirect(AuthRedirectionHelper::getRoute());
+    }
+
+    protected function createTeam(User $user): void
+    {
+        $user->ownedTeams()->save(Team::forceCreate([
+            'user_id' => $user->id,
+            'name' => explode(' ', $user->name, 2)[0]."'s Team",
+            'personal_team' => true,
+        ]));
     }
 }

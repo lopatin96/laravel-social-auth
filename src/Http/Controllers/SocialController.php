@@ -11,6 +11,7 @@ use Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Routing\Redirector;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Jetstream\Jetstream;
 
 class SocialController extends Controller
 {
@@ -53,7 +54,9 @@ class SocialController extends Controller
             $newSocialAccount->user()->associate($newUser);
             $newSocialAccount->save();
 
-            $this->createTeam($newUser);
+            if (Jetstream::hasTeamFeatures()) {
+                $this->createTeam($newUser);
+            }
 
             event(new Registered($newUser));
 

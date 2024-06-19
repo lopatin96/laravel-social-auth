@@ -8,7 +8,7 @@ class AuthRedirectionHelper
 {
     public static function getRoute(): string
     {
-        return auth()->ser()->isAdmin()
+        return auth()->user()->isAdmin()
             ? '/nova/dashboards/main'
             : '/dashboard';
     }
